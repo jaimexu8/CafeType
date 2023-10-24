@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Roboto+Mono&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 * {
   box-sizing:border-box;
 }
@@ -18,21 +14,23 @@ body {
   overflow-x: hidden;
 }
 
-#app {
+.layout {
   display: grid;
   justify-content: center;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-#centerContent {
+.content {
   display: grid;
   grid-template-rows: 1fr 4fr 1fr;
-  width: 55vw;
+  max-width: 55vw;
+  margin-left: auto;
+  margin-right: auto;
   padding: 25px;
 }
 
-.navbar {
+.header {
   display: grid;
   grid-template-columns: 1fr 4fr;
   justify-items: center;
@@ -44,7 +42,7 @@ body {
   height: 7vh;
 }
 
-.menu {
+.nav {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 100%;
@@ -57,20 +55,7 @@ body {
   text-decoration: none;
 }
 
-#menu a {
+.nav a {
   text-decoration: none;
   color: white;
-}
-
-.middle {
-
-}
-
-#testConfig {
-
-
-}
-
-#typingTest {
-
 }

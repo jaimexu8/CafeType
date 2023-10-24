@@ -3,11 +3,11 @@ import Footer from "../components/footer.jsx";
 
 export default function Login() {
   return (
-    <div id="app">
-      <div id="centerContent">
+    <div className="layout">
+      <div className="content">
         <Navbar />
 
-        <div className="middle"></div>
+        <div className="main"></div>
 
         <Footer />
       </div>

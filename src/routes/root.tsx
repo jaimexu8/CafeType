@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/footer.jsx";
 import "../styles/base.css";
@@ -8,11 +7,11 @@ import "../styles/default.css";
 export default function Root() {
   const [resultsVisibility, setResultsVisibility] = useState(false);
   return (
-    <div id="app">
-      <div id="centerContent">
+    <div className="layout">
+      <div className="content">
         <Navbar />
 
-        <div className="middle">
+        <div className="main">
           {resultsVisibility ? <Results /> : <TypingTest />}
         </div>
 
@@ -36,14 +35,9 @@ function TypingTest() {
   }, []);
 
   return (
-    <>
-      <div id="testConfig"></div>
-      <div id="typingTest">
-        <div id="paragraphContainer">
-          <p> {paragraph} </p>
-        </div>
-      </div>
-    </>
+    <div>
+      <p> {paragraph} </p>
+    </div>
   );
 }
 
@@ -54,7 +48,6 @@ async function updateQuote() {
   );
   const data = await response.json();
   if (response.ok) {
-    console.log("Quote fetched: ", data.content);
     return data.content;
   } else {
     console.log("An error occurred", data.content);
