@@ -2,3 +2,13 @@ body {
   background: #e7bc91;
   color: white;
 }
+
+/* Header */
+.nav a {
+  color: white;
+}
+
+/* Typing Field */
+.typed-chars {
+  color: black;
+}

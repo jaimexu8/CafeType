@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/footer.jsx";
-import "../styles/base.css";
-import "../styles/default.css";
+import Paragraph from "../components/paragraph.tsx";
+import TestStats from "../components/test-stats.tsx";
 
 export default function Root() {
   const [resultsVisibility, setResultsVisibility] = useState(false);
@@ -34,9 +34,17 @@ function TypingTest() {
     fetchQuote();
   }, []);
 
+  const numWords = 0; // TODO: Set numWords
+  const [wordsTyped, setWordstyped] = useState(0);
+
+  interface paragraphProps {
+    paragraph: string;
+  }
+
   return (
-    <div>
-      <p> {paragraph} </p>
+    <div className="test-container">
+      <Paragraph paragraph={paragraph} />
+      <TestStats />
     </div>
   );
 }
