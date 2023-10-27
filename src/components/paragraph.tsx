@@ -1,4 +1,10 @@
-function Paragraph({ paragraph }: { paragraph: string }) {
+interface paragraphProps {
+  paragraph: string;
+  setWordsTyped: React.Dispatch<React.SetStateAction<number>>;
+  setMistakes: React.Dispatch<React.SetStateAction<number>>;
+}
+
+function Paragraph({ paragraph, setWordsTyped, setMistakes }: paragraphProps) {
   interface charObjects {
     character: string;
     typed: boolean;
