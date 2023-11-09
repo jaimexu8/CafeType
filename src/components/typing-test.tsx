@@ -4,7 +4,6 @@ import useCountdown from "../useCountdown.ts";
 
 interface charObjects {
   character: string;
-  typed: boolean;
   correct: boolean;
 }
 
@@ -48,6 +47,15 @@ function TypingTest() {
   const [charMistakes, setCharMistakes] = useState(0);
   const [charAccuracy, setCharAccuracy] = useState(0);
 
+  const [charArray, setCharArray] = useState(
+    paragraph.split("").map((char) => {
+      return {
+        character: char,
+        correct: false,
+      };
+    })
+  );
+
   if (showResults) {
     return (
       <div className="test-container">
@@ -88,65 +96,45 @@ function TypingTest() {
     });
     setTestRunning(false);
     setShowResults(true);
-    //window.removeEventListener("keydown", handleKeyPress);
   };
-
-  // Convert paragraph to character object array
-  const charArray: charObjects[] = paragraph.split("").map((char) => {
-    return {
-      character: char,
-      typed: false,
-      correct: false,
-    };
-  });
 
   const isAlphanumeric = (key: string) => {
     return /^[a-zA-Z0-9 ]$/i.test(key);
   };
 
   const handleKeyPress = (event: KeyboardEvent) => {
-    if (!isAlphanumeric && event.key !== " " && event.key !== "Backspace")
-      return;
+    if (!isAlphanumeric(event.key) && event.key !== "Backspace") return;
     if (!testRunning) handleTestStart();
 
-    if (event.key === "Backspace") {
-      if (index == 0) return;
-      charArray[index - 1].correct = false;
-      setIndex(index - 1);
-      return;
-    }
-
-    if (event.key.toLowerCase() === charArray[index].character.toLowerCase()) {
-      // Correct character typed without considering capitalization
-      charArray[index].typed = true;
-
-      const shiftPressed = event.shiftKey;
-      const capslock = event.getModifierState("CapsLock");
-
-      const isUpperCase: boolean =
-        charArray[index].character === charArray[index].character.toUpperCase();
-      if (!shiftPressed && !capslock) {
-        // Lower case
-        if (!isUpperCase) charArray[index].correct = true;
-      } else if (shiftPressed && !capslock) {
-        // Upper case
-        if (isUpperCase) charArray[index].correct = true;
-      } else if (!shiftPressed && capslock) {
-        // Upper case
-        if (isUpperCase) charArray[index].correct = true;
-      } else {
-        // Both shift and capslock: lower case
-        if (!isUpperCase) charArray[index].correct = true;
+    setIndex((currentIndex) => {
+      if (event.key === "Backspace") {
+        if (currentIndex === 0) return 0; // return current index if it's already 0
+        // Set the previous character to incorrect
+        setCharArray((currentCharArray) => {
+          const newCharArray = [...currentCharArray];
+          newCharArray[currentIndex - 1].correct = false;
+          return newCharArray;
+        });
+        return currentIndex - 1;
       }
-      console.log("Typed: ", charArray[index].character);
-      setIndex(index + 1);
-    } else {
-      // Typed but wrong character
-      console.log("Wrongly typed: ", charArray[index].character);
-      setIndex(index + 1);
-    }
 
-    if (index == charArray.length - 1) handleTestEnd();
+      if (event.key === charArray[currentIndex].character) {
+        // Set the current character to correct
+        setCharArray((currentCharArray) => {
+          const newCharArray = [...currentCharArray];
+          newCharArray[currentIndex].correct = true;
+          return newCharArray;
+        });
+      } else {
+        // Handle incorrect character
+      }
+
+      if (currentIndex === charArray.length - 1) {
+        handleTestEnd();
+      }
+
+      return currentIndex + 1; // Return the new index
+    });
   };
 
   // Separate charArray to typed characters and untyped characters
@@ -242,7 +230,7 @@ function updateAccuracy({
   let wordCorrect = true;
   let i = 0;
   while (i < index) {
-    if (charArray[i].character === "Space") {
+    if (charArray[i].character === " ") {
       if (wordCorrect) wordsTyped += 1;
       else {
         wordMistakes += 1;
