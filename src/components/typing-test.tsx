@@ -4,10 +4,21 @@ import Paragraph from "./paragraph.tsx";
 import useCountdown from "../useCountdown.ts";
 
 function TypingTest() {
-  const [testComplete, setTestComplete] = useState(false);
+  const [testRunning, setTestRunning] = useState(false);
+  const [showResults, setShowResults] = useState(false);
   const [wordsTyped, setWordsTyped] = useState(0);
   const [mistakes, setMistakes] = useState(0);
   const { secondsLeft, start } = useCountdown();
+
+  const handleTestStart = () => {
+    start(60);
+    setTestRunning(true);
+  };
+
+  const handleTestEnd = () => {
+    setTestRunning(false);
+    setShowResults(true);
+  };
 
   const [paragraph, setParagraph] = useState(
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas at ea dolorum reiciendis quod animi ducimus culpa repellendus nihil dignissimos distinctio delectus, pariatur consectetur reprehenderit cum asperiores nemo similique eos!"
@@ -24,17 +35,49 @@ function TypingTest() {
   // const numChars = // TODO; find and set numChars
   // const numWords = // TODO: find and set numWords
 
-  return (
-    <div className="test-container">
-      {testComplete ? (
+  if (showResults) {
+    return (
+      <div className="test-container">
         <TestStats />
-      ) : (
-        <Paragraph
-          paragraph={paragraph}
-          setWordsTyped={setWordsTyped}
-          setMistakes={setMistakes}
-        />
-      )}
+      </div>
+    );
+  }
+
+  interface charObjects {
+    character: string;
+    typed: boolean;
+  }
+
+  // Convert paragraph to typed and untyped character arrays
+  const typedChars: charObjects[] = [];
+  const untypedChars: charObjects[] = paragraph.split("").map((char) => {
+    return {
+      character: char,
+      typed: false,
+    };
+  });
+
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (!testRunning) {
+      handleTestStart();
+    }
+  };
+
+  // Revert character arrays back to strings
+  const untypedCharString: string = untypedChars
+    .map((charObj) => charObj.character)
+    .join("");
+  const typedCharString: string = typedChars
+    .map((charObj) => charObj.character)
+    .join("");
+
+  return (
+    <div>
+      <p className="typed-chars">{typedCharString}</p>
+      {
+        //TODO: Vertical line to show position in paragraph
+      }
+      <p className="untyped-chars">{untypedCharString}</p>
     </div>
   );
 }
