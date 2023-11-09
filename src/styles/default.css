@@ -9,6 +9,14 @@ body {
 }
 
 /* Typing Field */
-.typed-chars {
+.typed-correct-char {
   color: black;
+}
+
+.typed-incorrect-char {
+  color: rgb(255, 116, 116);
+}
+
+.untyped-char {
+  color: white;
 }

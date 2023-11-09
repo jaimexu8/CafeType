@@ -56,3 +56,12 @@ body {
 .nav a {
   text-decoration: none;
 }
+
+.typing-field {
+  display: inline;
+}
+
+.char-object {
+  display: inline;
+  margin-right: 2px;
+}
