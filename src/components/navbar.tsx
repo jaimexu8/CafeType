@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store.ts";
 import logo from "../assets/Logo.svg";
 
 export default function Navbar() {
+  const loginStatus = useSelector(
+    (state: RootState) => state.loginStatus.value
+  );
+
   return (
     <div className="header">
       <Link to="/">
@@ -17,8 +23,8 @@ export default function Navbar() {
         <Link className="textButton" to="/store">
           store
         </Link>
-        <Link className="textButton" to="/login">
-          login
+        <Link className="textButton" to="/account">
+          {loginStatus ? "account" : "login"}
         </Link>
       </div>
     </div>

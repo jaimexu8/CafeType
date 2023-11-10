@@ -7,7 +7,9 @@ export default function Store() {
       <div className="content">
         <Navbar />
 
-        <div className="main"></div>
+        <div className="main">
+          <h1>Page under development</h1>
+        </div>
 
         <Footer />
       </div>

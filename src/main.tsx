@@ -1,6 +1,7 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import store from "./app/store";
+import { Provider } from "react-redux";
 
 import "./styles/base.css";
 import "./styles/default.css";
@@ -8,7 +9,7 @@ import "./styles/default.css";
 import Root from "./routes/root";
 import Leaderboard from "./routes/leaderboard";
 import Store from "./routes/store";
-import Login from "./routes/login";
+import Account from "./routes/account";
 import ErrorPage from "./error-page";
 
 const router = createBrowserRouter([
@@ -28,8 +29,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/login",
-    element: <Login />,
+    path: "/account",
+    element: <Account />,
     errorElement: <ErrorPage />,
   },
 ]);
@@ -39,7 +40,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </Provider>
 );

@@ -15,7 +15,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ## Contact
 
-Jaime Xu - xu1545@purdue.edu - jaimexu8
+Jaime Xu - xu1545@purdue.edu
 
 ## License
 
