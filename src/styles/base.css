@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Roboto+Mono&display=swap');
 
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 body {
-  background: #e7bc91;
-  color: white;
   font-family: "Roboto Mono";
   margin: 0;
   padding: 0;
@@ -57,5 +55,13 @@ body {
 
 .nav a {
   text-decoration: none;
-  color: white;
+}
+
+.typing-field {
+  display: inline;
+}
+
+.char-object {
+  display: inline;
+  margin-right: 2px;
 }
