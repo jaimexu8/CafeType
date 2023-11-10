@@ -14,7 +14,8 @@ body {
 }
 
 .typed-incorrect-char {
-  color: rgb(255, 116, 116);
+  color: black;
+  background: rgb(255, 116, 116);
 }
 
 .untyped-char {

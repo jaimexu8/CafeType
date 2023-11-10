@@ -24,14 +24,16 @@ function TestStats({
   return (
     <div>
       <p>Total words: {totalWords}</p>
-      <p>Words typed: {wordsTyped}</p>
-      <p>Word mistakes: {wordMistakes}</p>
-      <p>Word accuracy: {wordAccuracy}</p>
+      <p>Words typed correctly: {wordsTyped}</p>
+      <p>Words typed incorrectly: {wordMistakes}</p>
+      <p>Word accuracy: {wordAccuracy}%</p>
+      <br></br>
       <p>Total characters: {totalChars}</p>
-      <p>Characters typed: {charsTyped}</p>
-      <p>Character mistakes: {charMistakes}</p>
-      <p>Character accuracy: {charAccuracy}</p>
-      <p>Seconds left: {secondsLeft}</p>
+      <p>Characters typed correctly: {charsTyped}</p>
+      <p>Character typed incorrectly: {charMistakes}</p>
+      <p>Character accuracy: {charAccuracy}%</p>
+      <br></br>
+      <p>Seconds left: {secondsLeft}s</p>
     </div>
   );
 }
