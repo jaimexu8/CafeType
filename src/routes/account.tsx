@@ -1,7 +1,7 @@
 import Navbar from "../components/navbar";
 import AccountView from "../components/account-view";
 import LoginView from "../components/login-view";
-import SignupView from "../components/signup-view";
+// import SignupView from "../components/signup-view";
 import Footer from "../components/footer";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store.ts";

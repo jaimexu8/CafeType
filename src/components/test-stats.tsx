@@ -7,7 +7,7 @@ interface TestStatsProps {
   charsTyped: number;
   charMistakes: number;
   charAccuracy: number;
-  secondsLeft: number;
+  seconds: number;
 }
 
 function TestStats({
@@ -19,7 +19,7 @@ function TestStats({
   charsTyped,
   charMistakes,
   charAccuracy,
-  secondsLeft,
+  seconds,
 }: TestStatsProps) {
   return (
     <div>
@@ -33,7 +33,7 @@ function TestStats({
       <p>Character typed incorrectly: {charMistakes}</p>
       <p>Character accuracy: {charAccuracy}%</p>
       <br></br>
-      <p>Seconds left: {secondsLeft}s</p>
+      <p>Seconds: {seconds}s</p>
     </div>
   );
 }

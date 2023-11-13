@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import TestStats from "./test-stats.tsx";
-import useCountdown from "../useCountdown.ts";
+import useTimer from "../useTimer.ts";
 
 interface charObjects {
   character: string;
@@ -32,7 +32,7 @@ function TypingTest() {
 
   const [testRunning, setTestRunning] = useState(false);
   const [showResults, setShowResults] = useState(false);
-  const { secondsLeft, start, pause } = useCountdown();
+  const { seconds, start, pause } = useTimer();
   const [index, setIndex] = useState(0);
 
   const [totalWords, setTotalWords] = useState(0);
@@ -70,7 +70,8 @@ function TypingTest() {
   useEffect(() => {
     const handleTestStart = () => {
       setIndex(0);
-      start(60);
+      //start(60);
+      start();
       setTestRunning(true);
       console.log("Test running");
     };
@@ -150,7 +151,7 @@ function TypingTest() {
           charsTyped={charsTyped}
           charMistakes={charMistakes}
           charAccuracy={charAccuracy}
-          secondsLeft={secondsLeft}
+          seconds={seconds}
         />
       </div>
     );
@@ -196,7 +197,7 @@ function TypingTest() {
     <div className="typing-field">
       <TypedChars />
       <UntypedChars />
-      <p>Time: {secondsLeft}s</p>
+      <p>Time: {seconds}s</p>
     </div>
   );
 }
