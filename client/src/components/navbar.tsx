@@ -4,9 +4,7 @@ import { RootState } from "../app/store.ts";
 import logo from "../assets/Logo.svg";
 
 export default function Navbar() {
-  const loginStatus = useSelector(
-    (state: RootState) => state.userID.value !== -1
-  );
+  const loginStatus = useSelector((state: RootState) => state.uid.value !== -1);
 
   return (
     <div className="header">

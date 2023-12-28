@@ -1,10 +1,17 @@
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/footer.jsx";
 import TypingTest from "../components/typing test/typing-test.tsx";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store.ts";
+import "../styles/base.css";
+import "../styles/theme.css";
 
 export default function Root() {
+  const selectTheme = (state: RootState) => state.theme.value;
+  const currentTheme = useSelector(selectTheme);
+
   return (
-    <div className="layout">
+    <div className="layout" id={currentTheme}>
       <div className="content">
         <Navbar />
         <div className="main">

@@ -2,10 +2,6 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import store from "./app/store";
 import { Provider } from "react-redux";
-
-import "./styles/base.css";
-import "./styles/default.css";
-
 import Root from "./routes/root";
 import Leaderboard from "./routes/leaderboard";
 import Store from "./routes/store";

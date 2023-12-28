@@ -59,6 +59,7 @@ body {
 
 .typing-field {
   display: inline;
+  font-size: 25px;
 }
 
 .char-object {
