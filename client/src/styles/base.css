@@ -1,65 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Roboto+Mono&display=swap');
 
 * {
-  box-sizing: border-box;
-}
-
-body {
   font-family: "Roboto Mono";
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
+  margin: 0px;
 }
 
 .layout {
   display: grid;
-  justify-content: center;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-.content {
-  display: grid;
-  grid-template-rows: 1fr 4fr 1fr;
-  max-width: 55vw;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 25px;
+  height: 100vh;
+  grid:
+    "header" auto
+    "main" 1fr
+    "footer" auto
+    / 1fr;
+  gap: 8px;
 }
 
 .header {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  justify-items: center;
-  height: 7vh;
-  font-size: 2.3rem;
+  grid-area: header;
 }
 
-.logo {
-  height: 7vh;
+.main {
+  grid-area: main;
 }
 
-.nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: 100%;
+.footer {
+  grid-area: footer;
 }
 
-.textButton {
-  align-self: center;
-  justify-self: center;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-
-.nav a {
-  text-decoration: none;
+.content {
+  min-width: 400px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: wrap;
 }
 
 .typing-field {
   display: inline;
   font-size: 25px;
+  font-weight: 500;
 }
 
 .char-object {
