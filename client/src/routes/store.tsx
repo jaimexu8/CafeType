@@ -1,9 +1,10 @@
-import Navbar from "../components/navbar.jsx";
+import Header from "../components/header.js";
 import Footer from "../components/footer.jsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import "../styles/base.css";
 import "../styles/theme.css";
+import "../styles/header.css";
 
 export default function Store() {
   const selectTheme = (state: RootState) => state.theme.value;
@@ -11,15 +12,13 @@ export default function Store() {
 
   return (
     <div className="layout" id={currentTheme}>
-      <div className="content">
-        <Navbar />
-
-        <div className="main">
+      <Header />
+      <div className="main">
+        <div className="content">
           <h1>Page under development</h1>
         </div>
-
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }
