@@ -30,19 +30,11 @@ export default function LoginView({ setViewSignup }: LoginViewProps) {
         password
       );
       console.log("User logged in");
+      // Set current uid in Redux store
       dispatch(login(userCredential.user.uid));
     } catch (e) {
       console.error(e);
     }
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
 
   const viewSignup = () => {
@@ -63,7 +55,7 @@ export default function LoginView({ setViewSignup }: LoginViewProps) {
         <Typography component="h1" variant="h4">
           Login
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required

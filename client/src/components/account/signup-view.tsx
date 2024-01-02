@@ -7,10 +7,11 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login } from "../../app/uidSlice";
-import { auth, googleProvider } from "../../config/firebase";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth } from "../../config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 interface SignupViewProps {
   setViewSignup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,32 +31,17 @@ export default function SignupView({ setViewSignup }: SignupViewProps) {
         password
       );
       console.log("User created");
+      // Set current uid in Redux store
       dispatch(login(userCredential.user.uid));
+      // Create user in MongoDB
+      const response = await axios.post("/api/users", {
+        uid: userCredential.user.uid,
+        username: username,
+      });
+      console.log("User created in MongoDB:", response.data);
     } catch (e) {
       console.error(e);
     }
-  };
-
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("username"),
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
-
-  const viewLogin = () => {
-    setViewSignup(false);
   };
 
   return (
@@ -72,7 +58,7 @@ export default function SignupView({ setViewSignup }: SignupViewProps) {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -128,7 +114,7 @@ export default function SignupView({ setViewSignup }: SignupViewProps) {
               <Link
                 href="#"
                 variant="body2"
-                onClick={viewLogin}
+                onClick={() => setViewSignup(false)}
                 className="account-text"
               >
                 Already have an account? Sign in
